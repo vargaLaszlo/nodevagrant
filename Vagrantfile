@@ -24,13 +24,14 @@
 # https://www.vagrantup.com/about.html
 
 Vagrant.configure(2) do |config|
-  config.vm.host_name = 'nodevagrant'
+  config.vm.host_name = "nodevagrant"
   config.vm.box = "ubuntu/wily64"
+
+  ENV['LC_ALL'] = "en_US.UTF-8"
 
   # Shared folders
   # config.vm.synced_folder ".", "/home/vagrant"
   config.vm.synced_folder "dev", "/home/vagrant/dev"
-  #config.vm.synced_folder "www", "/var/www"
 
   # Virtualbox gui, memory, network cad
   config.vm.provider "virtualbox" do |v|
@@ -42,9 +43,6 @@ Vagrant.configure(2) do |config|
     # For host-only adapter
     # v.customize ["modifyvm", :id, "--nictype2", "Am79C973"]
   end
-
-  # Install tools via shellscript
-  config.vm.provision :shell, :path => "bootstrap.sh"
 
   # Set vagrant chache / Needs vagrant-cachier plugin
   if Vagrant.has_plugin?("vagrant-cachier")
@@ -60,7 +58,8 @@ Vagrant.configure(2) do |config|
   # config.vm.network "private_network", ip: "192.168.33.10"
   # config.vm.network "public_network"
 
-  config.vm.provision "shell", inline: "echo 'node version' && nodejs --version && echo 'npm version' && npm --version"
+  # Install tools via shellscript
+  config.vm.provision :shell, :path => "bootstrap.sh"
 
   # Welcome message / Needs vagrant-triggers plugin
   config.vm.post_up_message = 'Welcome! To log into the virtual machine type "vagrant ssh" (if you need username/password:vagrant/vagrant)'
