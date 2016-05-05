@@ -15,6 +15,9 @@
 # 4 cd to vagrant box folder in command line (powershell), and hit:
 # vagrant up
 #
+# See vagrant comand line help:
+# vagrant --help
+#
 # Troubleshooting on Windows
 # 1 Virtualbox throws error on 64 bit image => Windows features > Deactivate Hyper-V, or enable VT-x in bios, or use 32bit image (config.vm.box = "ubuntu/wily32")
 # 2 Vagrant can't dowload vagrant box with "Download failed. Will try another box URL if there is one" error message => Windows usernam contains accents (íéáűúőóüö, etc.) => Set environmental variable "VAGRANT_HOME" to vagrant program folder (like c:/HashiCorp/Vagrant)
@@ -45,6 +48,7 @@ Vagrant.configure(2) do |config|
   end
 
   # Set vagrant chache / Needs vagrant-cachier plugin
+
   if Vagrant.has_plugin?("vagrant-cachier")
     # More info on http://fgrehm.viewdocs.io/vagrant-cachier/usage
     config.cache.scope = :box
@@ -58,9 +62,15 @@ Vagrant.configure(2) do |config|
   # config.vm.network "private_network", ip: "192.168.33.10"
   # config.vm.network "public_network"
 
-  # Install tools via shellscript
-  config.vm.provision :shell, :path => "bootstrap.sh"
+  # Install tools via shellscripts
+  config.vm.provision :shell, :path => "sh/bootstrap.sh"
+  config.vm.provision :shell, :path => "sh/node.sh"
+  config.vm.provision :shell, :path => "sh/mongo.sh"
+  # config.vm.provision :shell, :path => "sh/docker.sh"
+  # config.vm.provision :shell, :path => "sh/compass.sh"
 
   # Welcome message / Needs vagrant-triggers plugin
-  config.vm.post_up_message = 'Welcome! To log into the virtual machine type "vagrant ssh" (if you need username/password:vagrant/vagrant)'
+  if Vagrant.has_plugin?("vagrant-triggers")
+    config.vm.post_up_message = 'Welcome! To log into the virtual machine type "vagrant ssh" (if you need username/password:vagrant/vagrant)'
+  end
 end
