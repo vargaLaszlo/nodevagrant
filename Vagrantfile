@@ -5,13 +5,15 @@
 # 1 Install VirtualBox
 # https://www.virtualbox.org/wiki/Downloads
 #
-# 2 Install Vagrant - Download windows installer, install it, and after the install reboot host machine
+# 2 Install Vagrant - Download installer, (On windows after the install reboot host machine)
 # https://www.vagrantup.com/downloads.html
 #
 # 3 Run in command line (powershell) to install vagrant plugins:
-# vagrant plugin install vagrant-triggers vagrant-share vagrant-hostupdater vagrant-cachier
+# vagrant plugin install vagrant-triggers vagrant-share vagrant-hostsupdater vagrant-cachier
 #
-# 4 cd to vagrant box folder in command line (powershell), and hit:
+# 4 Create shared folders on host machine (dev folder)
+#
+# 5 cd to vagrant box folder in command line (powershell), and hit:
 # vagrant up
 #
 # See vagrant comand line help:
