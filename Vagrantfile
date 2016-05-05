@@ -1,4 +1,10 @@
-# -*- mode: ruby -*-
+
+
+# Shh connect errors/timeouts, use if ssh connect fails
+# config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
+# config.ssh.username = "vagrant"
+# config.ssh.password = "vagrant"
+# config.ssh.insert_key = false# -*- mode: ruby -*-
 # vi: set ft=ruby :
 
 # To install environment
@@ -31,6 +37,12 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/wily64"
 
   ENV['LC_ALL'] = "en_US.UTF-8"
+
+  # Shh connect errors/timeouts, use if ssh connect fails
+  # config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
+  # config.ssh.username = "vagrant"
+  # config.ssh.password = "vagrant"
+  # config.ssh.insert_key = false
 
   # Shared folders
   # config.vm.synced_folder ".", "/home/vagrant"
@@ -66,11 +78,9 @@ Vagrant.configure(2) do |config|
   config.vm.provision :shell, :path => "sh/bootstrap.sh"
   config.vm.provision :shell, :path => "sh/node.sh"
   config.vm.provision :shell, :path => "sh/mongo.sh"
-  # config.vm.provision :shell, :path => "sh/docker.sh"
-  # config.vm.provision :shell, :path => "sh/compass.sh"
+  #config.vm.provision :shell, :path => "sh/docker.sh"
+  #config.vm.provision :shell, :path => "sh/compass.sh"
 
-  # Welcome message / Needs vagrant-triggers plugin
-  if Vagrant.has_plugin?("vagrant-triggers")
-    config.vm.post_up_message = 'Welcome! To log into the virtual machine type "vagrant ssh" (if you need username/password:vagrant/vagrant)'
-  end
+  # Welcome message
+  config.vm.post_up_message = 'Welcome! See vagrant comand line help: "vagrant --help" To log into the virtual machine type "vagrant ssh" (if you need username/password:vagrant/vagrant)'
 end
