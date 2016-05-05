@@ -1,10 +1,3 @@
-
-
-# Shh connect errors/timeouts, use if ssh connect fails
-# config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-# config.ssh.username = "vagrant"
-# config.ssh.password = "vagrant"
-# config.ssh.insert_key = false# -*- mode: ruby -*-
 # vi: set ft=ruby :
 
 # To install environment
