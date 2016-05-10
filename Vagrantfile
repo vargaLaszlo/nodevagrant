@@ -5,7 +5,7 @@
 # 1 Install VirtualBox
 # https://www.virtualbox.org/wiki/Downloads
 #
-# 2 Install Vagrant - Download installer, (On windows after the install reboot host machine)
+# 2 Install Vagrant - Download installer (On windows after the install reboot host machine)
 # https://www.vagrantup.com/downloads.html
 #
 # 3 Run in command line (powershell) to install vagrant plugins:
@@ -22,7 +22,7 @@
 # Troubleshooting on Windows
 # 1 Virtualbox throws error on 64 bit image => Windows features > Deactivate Hyper-V, or enable VT-x in bios, or use 32bit image (config.vm.box = "ubuntu/wily32")
 # 2 Vagrant can't dowload vagrant box with "Download failed. Will try another box URL if there is one" error message => Windows usernam contains accents (íéáűúőóüö, etc.) => Set environmental variable "VAGRANT_HOME" to vagrant program folder (like c:/HashiCorp/Vagrant)
-# 3 vagrant up halts at ssh authentication => Install openssh, or delete the private key ".vagrant.d/insecure_private_key", or enable "Shh connect errors/timeouts" and or "Change network card to PCnet-FAST III" blocks in the Vagrantfile (all chases stop/start the box)
+# 3 vagrant up halts at ssh authentication => Install openssh/Git for windows and set enviroment variable "Path" to ssh.exe (settings > system > about > system info > advenced system settings > enviroment variables > path > edit > new ~ "C:/Program Files/OpenSSH/bin"), or delete the private key ".vagrant.d/insecure_private_key", or enable "Shh connect errors/timeouts" and or "Change network card to PCnet-FAST III" blocks in the Vagrantfile (all chases stop/start the box)
 #
 # More about vagrant
 # https://www.vagrantup.com/about.html
