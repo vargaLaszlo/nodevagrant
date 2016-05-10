@@ -29,7 +29,7 @@
 
 Vagrant.configure(2) do |config|
   config.vm.host_name = "nodevagrant"
-  config.vm.box = "ubuntu/wily64"
+  config.vm.box = "ubuntu/trusty64"
 
   ENV['LC_ALL'] = "en_US.UTF-8"
 
@@ -73,7 +73,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision :shell, :path => "sh/bootstrap.sh"
   config.vm.provision :shell, :path => "sh/node.sh"
   config.vm.provision :shell, :path => "sh/mongo.sh"
-  #config.vm.provision :shell, :path => "sh/docker.sh"
+  config.vm.provision :shell, :path => "sh/docker.sh"
   #config.vm.provision :shell, :path => "sh/compass.sh"
 
   # Welcome message

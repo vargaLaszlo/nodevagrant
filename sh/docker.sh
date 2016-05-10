@@ -12,7 +12,7 @@ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58
 # Ubuntu Wily 15.10
 # deb https://apt.dockerproject.org/repo ubuntu-wily main
 
-sudo echo deb https://apt.dockerproject.org/repo ubuntu-wily main > /etc/apt/sources.list.d/docker.list
+sudo echo deb https://apt.dockerproject.org/repo ubuntu-trusty main > /etc/apt/sources.list.d/docker.list
 
 sudo apt-get -q -y update
 sudo apt-get -q -y purge lxc-docker -y
