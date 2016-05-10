@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Install apt-fast
+
 sudo apt-get update;
 sudo apt-get install -y aria2 --no-install-recommends;
 

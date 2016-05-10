@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# Print versions in fancy colors
+
 tput setaf 1
 lsb_release -a
 
