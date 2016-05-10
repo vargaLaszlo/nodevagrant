@@ -42,6 +42,7 @@ Vagrant.configure(2) do |config|
   # Shared folders
   # config.vm.synced_folder ".", "/home/vagrant"
   config.vm.synced_folder "dev", "/home/vagrant/dev"
+  config.vm.synced_folder "sh", "/home/vagrant/sh"
 
   # Virtualbox gui, memory, network cad
   config.vm.provider "virtualbox" do |v|
@@ -70,6 +71,7 @@ Vagrant.configure(2) do |config|
   # config.vm.network "public_network"
 
   # Install tools via shellscripts
+  config.vm.provision :shell, :path => "sh/apt-fast.sh"
   config.vm.provision :shell, :path => "sh/bootstrap.sh"
   config.vm.provision :shell, :path => "sh/node.sh"
   config.vm.provision :shell, :path => "sh/mongo.sh"

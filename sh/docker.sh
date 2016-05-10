@@ -19,8 +19,19 @@ sudo apt-get -q -y purge lxc-docker -y
 sudo apt-cache policy docker-engine
 
 sudo apt-get -q -y update
-sudo apt-get -q -y install docker-engine docker-compose
+sudo apt-fast -q -y install docker-engine
 sudo usermod -aG docker vagrant
+
+# Install docker-compose
+
+# 15.10 +
+# sudo apt-get -q -y install docker-compose
+
+sudo curl -L https://github.com/docker/compose/releases/download/1.7.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+# 15.10 +
+# sudo apt-get -q -y install docker-compose
 
 # Print versions
 

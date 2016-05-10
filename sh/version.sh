@@ -1,18 +1,28 @@
 #!/bin/bash
+tput setaf 1
+lsb_release -a
+
+tput sgr0
+echo '----------------------------'
+tput setaf 2
 
 echo 'node version'
 nodejs --version
 echo 'npm version'
 npm --version
-echo 'nvm version'
-nvm --version
 
-echo 'mongo version'
+tput sgr0
+echo '----------------------------'
+tput setaf 3
+
 mongo --version
-echo 'mongod version'
 mongod --version
 
-echo 'docker version'
+tput sgr0
+echo '----------------------------'
+tput setaf 6
+
 docker --version
-echo 'docker-compose version'
 docker-compose --version
+
+tput sgr0
