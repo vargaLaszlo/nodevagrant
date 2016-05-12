@@ -16,5 +16,5 @@ chmod +x /home/vagrant/sh/*
 echo 'alias npmi="npm install --no-bin-link"' >> /home/vagrant/.bashrc
 echo 'alias npm="npm --no-bin-link"' >> /home/vagrant/.bashrc
 
-echo 'sudo chmod -R 777 /home/vagrant/.nvm' >> /home/vagrant/.bashrc
-echo 'sudo chmod -R 777 /home/vagrant/.npm' >> /home/vagrant/.bashrc
+echo 'sudo chmod -R 777 /home/vagrant/.nvm' >> /home/vagrant/.profile
+echo 'sudo chmod -R 777 /home/vagrant/.npm' >> /home/vagrant/.profile
