@@ -10,7 +10,7 @@ echo '----------------------------'
 tput setaf 2
 
 echo 'node version'
-nodejs --version
+node --version
 echo 'npm version'
 npm --version
 
