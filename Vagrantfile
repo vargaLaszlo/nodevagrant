@@ -73,10 +73,18 @@ Vagrant.configure(2) do |config|
   # Install tools via shellscripts
   config.vm.provision :shell, :path => "sh/apt-fast.sh"
   config.vm.provision :shell, :path => "sh/bootstrap.sh"
-  config.vm.provision :shell, :path => "sh/node.sh"
+  config.vm.provision "shell" do |s|
+   s.path = "sh/node.sh"
+   s.keep_color = true
+   s.env = {
+    "NODE_INSTALL" => "NONE", # NVM | APT | NONE
+    "NODE_VERSION_NVM" => "4.4.4", # works with NVM
+    "NODE_VERSION_APT" => "4.x" # works with APT
+  }
+  end
   config.vm.provision :shell, :path => "sh/mongo.sh"
   config.vm.provision :shell, :path => "sh/docker.sh"
-  #config.vm.provision :shell, :path => "sh/compass.sh"
+  # config.vm.provision :shell, :path => "sh/compass.sh"
 
   # Welcome message
   config.vm.post_up_message = 'Welcome! See vagrant comand line help: "vagrant --help" To log into the virtual machine type "vagrant ssh" (if you need username/password:vagrant/vagrant)'

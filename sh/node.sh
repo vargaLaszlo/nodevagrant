@@ -2,8 +2,15 @@
 
 # Install Node.js, npm via package manager
 
-# curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-# sudo apt-fast -q -y --force-yes install nodejs
+if [ $NODE_INSTALL == "APT" ]; then
+  echo ">>> NODE INSTALL VIA APT"
+
+  curl -sL https://deb.nodesource.com/setup_$NODE_VERSION_APT | sudo -E bash -
+  sudo apt-fast -q -y --force-yes install nodejs
+
+  echo '>>> node version' && node --version
+  echo '>>> npm version' && npm --version
+fi
 
 # Install nvm
 
@@ -21,10 +28,18 @@ source /home/vagrant/.profile
 
 # Install Node.js, npm via nvm
 
-nvm install 4.4.4
-nvm alias default 4.4.4
+if [ $NODE_INSTALL == "NVM" ]; then
+  echo ">>> NODE INSTALL VIA NVM"
 
-# Print versions
+  nvm install $NODE_VERSION_NVM
+  nvm alias default $NODE_VERSION_NVM
 
-echo '>>> node version' && node --version
-echo '>>> npm version' && npm --version
+  echo 'sudo chmod -R 777 /home/vagrant/.nvm' >> /home/vagrant/.profile
+  echo 'sudo chmod -R 777 /home/vagrant/.npm' >> /home/vagrant/.profile
+
+  echo '>>> node version' && node --version
+  echo '>>> npm version' && npm --version
+fi
+
+echo 'alias npmi="npm install --no-bin-link"' >> /home/vagrant/.bashrc
+echo 'alias npm="npm --no-bin-link"' >> /home/vagrant/.bashrc
