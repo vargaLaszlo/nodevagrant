@@ -1,3 +1,7 @@
+#!/bin/bash
+
+# Basic npm packages to install
+
 npm i -g nodemon
 npm i -g express-generator
 npm i -g mocha
