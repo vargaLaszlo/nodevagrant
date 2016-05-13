@@ -48,6 +48,7 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v|
     v.gui = false
     v.memory = "2048"
+    v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/dev", "1"]
     # Change network card to PCnet-FAST III
     # For NAT adapter
     # v.customize ["modifyvm", :id, "--nictype1", "Am79C973"]
@@ -77,7 +78,7 @@ Vagrant.configure(2) do |config|
    s.path = "sh/node.sh"
    s.keep_color = true
    s.env = {
-    "NODE_INSTALL" => "NONE", # NVM | APT | NONE
+    "NODE_INSTALL" => "APT", # NVM | APT | NONE
     "NODE_VERSION_NVM" => "4.4.4", # works with NVM
     "NODE_VERSION_APT" => "4.x" # works with APT
   }
