@@ -68,24 +68,25 @@ Vagrant.configure(2) do |config|
   # config.vm.network "forwarded_port", guest: 8081, host: 8081
 
   # config.vm.hostname = "dev.nodevagrant.com"
-  # config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "private_network", ip: "192.168.33.10"
   # config.vm.network "public_network"
 
   # Install tools via shellscripts
-  config.vm.provision :shell, :path => "sh/apt-fast.sh"
-  config.vm.provision :shell, :path => "sh/bootstrap.sh"
+  config.vm.provision :shell, :path => "sh/provision-apt-fast.sh"
+  config.vm.provision :shell, :path => "sh/provision-bootstrap.sh"
+  config.vm.provision :shell, :path => "sh/provision-samba.sh"
   config.vm.provision "shell" do |s|
-   s.path = "sh/node.sh"
+   s.path = "sh/provision-node.sh"
    s.keep_color = true
    s.env = {
     "NODE_INSTALL" => "APT", # NVM | APT | NONE
     "NODE_VERSION_NVM" => "4.4.4", # works with NVM
     "NODE_VERSION_APT" => "4.x" # works with APT
-  }
+   }
   end
-  config.vm.provision :shell, :path => "sh/mongo.sh"
-  config.vm.provision :shell, :path => "sh/docker.sh"
-  # config.vm.provision :shell, :path => "sh/compass.sh"
+  config.vm.provision :shell, :path => "sh/provision-mongo.sh"
+  config.vm.provision :shell, :path => "sh/provision-docker.sh"
+  # config.vm.provision :shell, :path => "sh/provision-compass.sh"
 
   # Welcome message
   config.vm.post_up_message = 'Welcome! See vagrant comand line help: "vagrant --help" To log into the virtual machine type "vagrant ssh" (if you need username/password:vagrant/vagrant)'
