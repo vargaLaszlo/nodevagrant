@@ -29,3 +29,13 @@ else
   echo '}' >> /home/vagrant/.bashrc
   echo 'export PS1='\u@\h \[\033[1;33m\]\w\[\033[0m\033[1;34m\][$(parse_git_username)]\[\033[0m\033[1;32m\]$(parse_git_branch)\[\033[0m\] \n$ '' >> /home/vagrant/.bashrc
 fi
+
+# Third party shellscripts
+
+# ESM'SH:  http://www.ezservermonitor.com/esm-sh/features
+if [ -f /sh/eZServerMonitor.sh ]; then
+  :
+else
+  git clone https://github.com/shevabam/ezservermonitor-sh.git /tmp/ezsh
+  cp /tmp/ezsh/eZServerMonitor.sh /home/vagrant/sh
+fi

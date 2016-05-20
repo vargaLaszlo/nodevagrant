@@ -7,6 +7,13 @@ lsb_release -a
 
 tput sgr0
 echo '----------------------------'
+tput setaf 5
+
+echo 'Samba'
+sudo smbstatus -V
+
+tput sgr0
+echo '----------------------------'
 tput setaf 2
 
 echo 'node version'

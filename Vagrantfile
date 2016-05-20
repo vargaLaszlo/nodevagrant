@@ -9,7 +9,7 @@
 # https://www.vagrantup.com/downloads.html
 #
 # 3 Run in command line (powershell) to install vagrant plugins:
-# vagrant plugin install vagrant-triggers vagrant-share vagrant-hostsupdater vagrant-cachier
+# vagrant plugin install vagrant-triggers vagrant-share vagrant-hostsupdater vagrant-cachier vagrant-multi-putty
 #
 # 4 Create shared folders on host machine (dev folder)
 #
