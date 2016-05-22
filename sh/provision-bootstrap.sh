@@ -39,7 +39,7 @@ else
   echo 'function parse_git_username {' >> /home/vagrant/.bashrc
   echo '  git config user.name 2> /dev/null | tail -n1' >> /home/vagrant/.bashrc
   echo '}' >> /home/vagrant/.bashrc
-  echo '# Colored promt' >> /home/vagrant/.bashr
+  echo '# Colored promt' >> /home/vagrant/.bashrc
   echo 'export CLICOLOR=true' >> /home/vagrant/.bashrc
   echo 'export LSCOLORS=ExFxCxDxBxegedabagacad' >> /home/vagrant/.bashrc
   echo 'PS1="\[\033[0;31m\]> \[\033[0;32m\]\u@\h: \[\033[0;33m\]\w\[\033[0;36m\]$(__git_ps1)\[\033[00m\] \$ "' >> /home/vagrant/.bashrc
