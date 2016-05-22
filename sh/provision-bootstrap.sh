@@ -28,8 +28,8 @@ chmod +x /home/vagrant/sh/*
 if grep -q 'Nodevagrant' /home/vagrant/.bashrc; then
   echo '>>> bash already configured'
 else
-  echo '##### Nodevagrant #####' >> /home/vagrant/.bashr
-  echo '# Gather git repository info' >> /home/vagrant/.bashr
+  echo '##### Nodevagrant #####' >> /home/vagrant/.bashrc
+  echo '# Gather git repository info' >> /home/vagrant/.bashrc
   echo 'function parse_git_dirty {' >> /home/vagrant/.bashrc
   echo '  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"' >> /home/vagrant/.bashrc
   echo '}' >> /home/vagrant/.bashrc
