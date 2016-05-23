@@ -86,6 +86,7 @@ Vagrant.configure(2) do |config|
   end
   config.vm.provision :shell, :path => "sh/provision-mongo.sh"
   config.vm.provision :shell, :path => "sh/provision-docker.sh"
+  config.vm.provision :shell, :path => "sh/provision-phantomjs.sh"
   # config.vm.provision :shell, :path => "sh/provision-compass.sh"
 
   # Welcome message
