@@ -4,12 +4,14 @@
 
 * Apt-fast - much faster apt-get installs
 * Samba - folder share via network (devs)
+* Virtualbox shared folder (dev)
 * Node, NVM
 * Mongo
 * Docker, Docker Compose
+* PhantomJS
 * Utility shellscripts
 * Command line tools (git, mc, htop, etc.)
-* Virtualbox shared folder (dev)
+
 
 ## Install nodevagrant
 
