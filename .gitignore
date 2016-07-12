@@ -1,6 +1,7 @@
 ### Vagrant ###
 .vagrant/
 dev/
+.gitconfig
 
 ### Third Party Shellscripts ###
 sh/eZServerMonitor.sh

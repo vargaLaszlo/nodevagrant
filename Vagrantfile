@@ -30,6 +30,7 @@
 Vagrant.configure(2) do |config|
   config.vm.host_name = "nodevagrant"
   config.vm.box = "ubuntu/trusty64"
+  config.vm.box_check_update = false
 
   ENV['LC_ALL'] = "en_US.UTF-8"
 
@@ -89,6 +90,10 @@ Vagrant.configure(2) do |config|
   config.vm.provision :shell, :path => "sh/provision-docker.sh"
   config.vm.provision :shell, :path => "sh/provision-phantomjs.sh"
   # config.vm.provision :shell, :path => "sh/provision-compass.sh"
+
+  # Copy files into the virtual machine
+  # Copy your gitconfig file into the vm
+  # config.vm.provision "file", source: ".gitconfig", destination: ".gitconfig"
 
   # Welcome message
   config.vm.post_up_message = 'Welcome! See vagrant comand line help: "vagrant --help" To log into the virtual machine type "vagrant ssh" (if you need username/password:vagrant/vagrant)'
