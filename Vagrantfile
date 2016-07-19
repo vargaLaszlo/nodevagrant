@@ -80,11 +80,18 @@ Vagrant.configure(2) do |config|
   # Forvarded ports
   config.vm.network "forwarded_port", guest: 8080, host: 8080
   # config.vm.network "forwarded_port", guest: 8081, host: 8081
-  config.vm.network "forwarded_port", guest: 27017, host: 27777
+  config.vm.network "forwarded_port", guest: 27017, host: 27777 # Mongo
+  config.vm.network "forwarded_port", guest: 2375, host: 2375 # Docker Remote Api
 
   # config.vm.hostname = "dev.nodevagrant.com"
   config.vm.network "private_network", ip: "192.168.33.10"
   # config.vm.network "public_network"
+
+  # Copy files into the virtual machine
+  config.vm.provision "file", source: "files/docker-tcp.socket", destination: "/etc/systemd/system/docker-tcp.socket"
+
+  # Copy your gitconfig file into the vm
+  # config.vm.provision "file", source: ".gitconfig", destination: ".gitconfig"
 
   # Install tools via shellscripts
   config.vm.provision :shell, :path => "sh/provision-apt-fast.sh"
@@ -103,10 +110,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision :shell, :path => "sh/provision-docker.sh"
   config.vm.provision :shell, :path => "sh/provision-phantomjs.sh"
   # config.vm.provision :shell, :path => "sh/provision-compass.sh"
-
-  # Copy files into the virtual machine
-  # Copy your gitconfig file into the vm
-  # config.vm.provision "file", source: ".gitconfig", destination: ".gitconfig"
 
   # Welcome message
   config.vm.post_up_message = 'Welcome! See vagrant comand line help: "vagrant --help" To log into the virtual machine type "vagrant ssh" (if you need username/password:vagrant/vagrant)'
