@@ -5,7 +5,7 @@
 sudo apt-fast -q -y update
 sudo apt-fast -q -y upgrade
 sudo apt-fast -q -y autoremove
-sudo apt-fast -q -y --force-yes install git wget curl build-essential libssl-dev htop mc cowsay
+sudo apt-fast -q -y --force-yes install git wget curl build-essential libssl-dev virtualbox-guest-additions-iso htop mc cowsay
 
 # Third party shellscripts
 
