@@ -1,7 +1,10 @@
 ### Vagrant ###
 .vagrant/
-dev/
 .gitconfig
+
+dev/
 
 ### Third Party Shellscripts ###
 sh/eZServerMonitor.sh
+sh/docker-check-config.sh
+sh/ubuntu-kernel-upgrader-script.sh

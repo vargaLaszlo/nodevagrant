@@ -1,12 +1,18 @@
 #!/bin/bash
 
+if which apt-fast >/dev/null; then
+    PACKAGE_MANAGER=apt-fast
+else
+    PACKAGE_MANAGER=apt-get
+fi
+
 # Install Node.js, npm via package manager
 
 if [ $NODE_INSTALL == "APT" ]; then
   echo ">>> NODE INSTALL VIA APT"
 
   curl -sL https://deb.nodesource.com/setup_$NODE_VERSION_APT | sudo -E bash -
-  sudo apt-fast -q -y --force-yes install nodejs
+  sudo $PACKAGE_MANAGER -q -y --force-yes install nodejs
 
   echo '>>> node version' && node --version
   echo '>>> npm version' && npm --version
@@ -16,15 +22,15 @@ fi
 
 curl https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | sh
 
-sudo cp -arv /root/.nvm /home/vagrant/.nvm
+sudo cp -arv /root/.nvm $HOME_FOLDER/.nvm
 sudo chmod 777 -R .nvm
-sudo chmod 777 -R /home/vagrant/.nvm
+sudo chmod 777 -R $HOME_FOLDER/.nvm
 
-echo 'export NVM_DIR="/home/vagrant/.nvm"' >> /home/vagrant/.bashrc
-echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> /home/vagrant/.bashrc
+echo 'export NVM_DIR="$HOME_FOLDER/.nvm"' >> $HOME_FOLDER/.bashrc
+echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> $HOME_FOLDER/.bashrc
 
-echo "source /home/vagrant/.nvm/nvm.sh" >> /home/vagrant/.profile
-source /home/vagrant/.profile
+echo "source $HOME_FOLDER/.nvm/nvm.sh" >> $HOME_FOLDER/.profile
+source $HOME_FOLDER/.profile
 
 # Install Node.js, npm via nvm
 
@@ -34,12 +40,11 @@ if [ $NODE_INSTALL == "NVM" ]; then
   nvm install $NODE_VERSION_NVM
   nvm alias default $NODE_VERSION_NVM
 
-  echo 'sudo chmod -R 777 /home/vagrant/.nvm' >> /home/vagrant/.profile
-  echo 'sudo chmod -R 777 /home/vagrant/.npm' >> /home/vagrant/.profile
+  echo 'sudo chmod -R 777 $HOME_FOLDER/.nvm' >> $HOME_FOLDER/.profile
 
   echo '>>> node version' && node --version
   echo '>>> npm version' && npm --version
 fi
 
-echo 'alias npmi="npm install --no-bin-link"' >> /home/vagrant/.bashrc
-echo 'alias npm="npm --no-bin-link"' >> /home/vagrant/.bashrc
+echo 'alias npmi="npm install --no-bin-link"' >> $HOME_FOLDER/.bashrc
+echo 'alias npm="npm --no-bin-link"' >> $HOME_FOLDER/.bashrc

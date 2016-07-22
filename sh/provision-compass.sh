@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# Install ruby, sass compass
-
-sudo apt-fast -q -y --force-yes install ruby
+# Install, sass compass
 
 sudo gem update --system
 sudo gem install sass compass

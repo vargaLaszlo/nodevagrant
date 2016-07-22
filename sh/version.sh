@@ -7,6 +7,13 @@ lsb_release -a
 
 tput sgr0
 echo '----------------------------'
+tput setaf 4
+
+echo 'Kernel'
+uname -r
+
+tput sgr0
+echo '----------------------------'
 tput setaf 5
 
 echo 'Samba'

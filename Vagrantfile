@@ -1,34 +1,12 @@
 # vi: set ft=ruby :
 
-# To install environment
-#
-# 1 Install VirtualBox
-# https://www.virtualbox.org/wiki/Downloads
-#
-# 2 Install Vagrant - Download installer (On windows after the install reboot host machine)
-# https://www.vagrantup.com/downloads.html
-#
-# 3 Run in command line (powershell) to install vagrant plugins:
-# vagrant plugin install vagrant-triggers vagrant-share vagrant-hostsupdater vagrant-cachier vagrant-multi-putty
-#
-# 4 Create shared folders on host machine (dev folder)
-#
-# 5 cd to vagrant box folder in command line (powershell), and hit:
-# vagrant up
-#
-# See vagrant comand line help:
-# vagrant --help
-#
-# Troubleshooting on Windows
-# 1 Virtualbox throws error on 64 bit image => Windows features > Deactivate Hyper-V, or enable VT-x in bios, or use 32bit image (config.vm.box = "ubuntu/wily32")
-# 2 Vagrant can't dowload vagrant box with "Download failed. Will try another box URL if there is one" error message => Windows usernam contains accents (íéáűúőóüö, etc.) => Set environmental variable "VAGRANT_HOME" to vagrant program folder (like c:/HashiCorp/Vagrant)
-# 3 vagrant up halts at ssh authentication => Install openssh/Git for windows and set enviroment variable "Path" to ssh.exe (settings > system > about > system info > advenced system settings > enviroment variables > path > edit > new ~ "C:/Program Files/OpenSSH/bin"), or delete the private key ".vagrant.d/insecure_private_key", or enable "Shh connect errors/timeouts" and or "Change network card to PCnet-FAST III" blocks in the Vagrantfile (all chases stop/start the box)
-#
-# More about vagrant
-# https://www.vagrantup.com/about.html
+# Settings
+node_install = "APT", # NVM | APT | NONE
+node_version_nvm = "4.4.4", # works with NVM
+node_version_apt = "4.x" # works with APT
 
 # Install required vagrant plugins
-required_plugins = %w(vagrant-triggers vagrant-share vagrant-hostsupdater vagrant-cachier vagrant-multi-putty)
+required_plugins = %w(vagrant-triggers vagrant-share vagrant-hostsupdater vagrant-cachier vagrant-multi-putty vagrant-vbguest)
 
 plugins_to_install = required_plugins.select { |plugin| not Vagrant.has_plugin? plugin }
 if not plugins_to_install.empty?
@@ -40,23 +18,29 @@ if not plugins_to_install.empty?
   end
 end
 
+# Vagrant configure
 Vagrant.configure(2) do |config|
   config.vm.host_name = "nodevagrant"
-  config.vm.box = "ubuntu/trusty64"
-  config.vm.box_check_update = false
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.box_url = "http://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-vagrant.box"
+  config.vm.box_check_update = true
 
   ENV['LC_ALL'] = "en_US.UTF-8"
 
+  ubuntu = "xenial"
+  user = "ubuntu"
+  home = "/home/ubuntu"
+
   # Shh connect errors/timeouts, use if ssh connect fails
   # config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-  # config.ssh.username = "vagrant"
-  # config.ssh.password = "vagrant"
+  # config.ssh.username = user
+  # config.ssh.password = user
   # config.ssh.insert_key = false
 
   # Shared folders
-  # config.vm.synced_folder ".", "/home/vagrant"
-  config.vm.synced_folder "dev", "/home/vagrant/dev"
-  config.vm.synced_folder "sh", "/home/vagrant/sh"
+  # config.vm.synced_folder ".", #{home}
+  config.vm.synced_folder "dev", "#{home}/dev"
+  config.vm.synced_folder "sh", "#{home}/sh"
 
   # Virtualbox gui, memory, network cad
   config.vm.provider "virtualbox" do |v|
@@ -91,23 +75,73 @@ Vagrant.configure(2) do |config|
   # config.vm.provision "file", source: ".gitconfig", destination: ".gitconfig"
 
   # Install tools via shellscripts
-  config.vm.provision :shell, :path => "sh/provision-apt-fast.sh"
-  config.vm.provision :shell, :path => "sh/provision-bootstrap.sh"
-  config.vm.provision :shell, :path => "sh/provision-samba.sh"
-  config.vm.provision "shell" do |s|
-   s.path = "sh/provision-node.sh"
-   s.keep_color = true
-   s.env = {
-    "NODE_INSTALL" => "APT", # NVM | APT | NONE
-    "NODE_VERSION_NVM" => "4.4.4", # works with NVM
-    "NODE_VERSION_APT" => "4.x" # works with APT
+
+  # Apt-fast
+  config.vm.provision "shell" do |sh|
+   sh.path = "sh/provision-apt-fast.sh"
+   sh.keep_color = true
+   sh.env = {
+    "HOME_FOLDER" => home
    }
   end
-  config.vm.provision :shell, :path => "sh/provision-mongo.sh"
-  config.vm.provision :shell, :path => "sh/provision-docker.sh"
-  config.vm.provision :shell, :path => "sh/provision-phantomjs.sh"
+
+  # Bootstrap
+  config.vm.provision "shell" do |sh|
+   sh.path = "sh/provision-bootstrap.sh"
+   sh.keep_color = true
+   sh.env = {
+    "HOME_FOLDER" => home
+   }
+  end
+
+  # Samba
+  config.vm.provision "shell" do |sh|
+   sh.path = "sh/provision-samba.sh"
+   sh.keep_color = true
+   sh.env = {
+    "HOME_FOLDER" => home
+   }
+  end
+
+  # Node.js
+  config.vm.provision "shell" do |sh|
+   sh.path = "sh/provision-node.sh"
+   sh.keep_color = true
+   sh.env = {
+    "NODE_INSTALL" => node_install,
+    "NODE_VERSION_NVM" => node_version_nvm,
+    "NODE_VERSION_APT" => node_version_apt,
+    "HOME_FOLDER" => home
+   }
+  end
+
+  # Mongodb
+  config.vm.provision "shell" do |sh|
+   sh.path = "sh/provision-mongo.sh"
+   sh.keep_color = true
+  end
+
+  # Docker
+  config.vm.provision "shell" do |sh|
+   sh.path = "sh/provision-docker.sh"
+   sh.keep_color = true
+   sh.env = {
+    "USER" => user
+   }
+  end
+
+  # Phantomjs
+  config.vm.provision "shell" do |sh|
+   sh.path = "sh/provision-phantomjs.sh"
+   sh.keep_color = true
+   sh.env = {
+    "HOME_FOLDER" => home
+   }
+  end
+
+  # SASS, Compass
   # config.vm.provision :shell, :path => "sh/provision-compass.sh"
 
   # Welcome message
-  config.vm.post_up_message = 'Welcome! See vagrant comand line help: "vagrant --help" To log into the virtual machine type "vagrant ssh" (if you need username/password:vagrant/vagrant)'
+  config.vm.post_up_message = 'Welcome! See vagrant comand line help: "vagrant --help" To log into the virtual machine type "vagrant ssh" (if you need username/password:#{user}/#{user})'
 end
