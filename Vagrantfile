@@ -87,9 +87,6 @@ Vagrant.configure(2) do |config|
   config.vm.network "private_network", ip: "192.168.33.10"
   # config.vm.network "public_network"
 
-  # Copy files into the virtual machine
-  config.vm.provision "file", source: "files/docker-tcp.socket", destination: "/etc/systemd/system/docker-tcp.socket"
-
   # Copy your gitconfig file into the vm
   # config.vm.provision "file", source: ".gitconfig", destination: ".gitconfig"
 
