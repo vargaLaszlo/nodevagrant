@@ -1,3 +1,5 @@
+![Nodevagrant](docs/imgs/nvagrant.png)
+
 # nodevagrant
 
 ## Features
