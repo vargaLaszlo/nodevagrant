@@ -12,19 +12,19 @@ https://robomongo.org/download
 
 ## Connect to Nodevagrant
 
-    -Go to network icon and hit Manage Connections
+-Go to network icon and hit Manage Connections
 
-    -Hit Create
+-Hit Create
 
-    -Set url in "Connection to Docker Remote API"
+-Set url in "Connection to Docker Remote API"
 
-        Use localhost
+Use localhost
 
             ```
             http://localhost : 27777
             ```
 
 
-    -Hit the "Save" Button and "Connect"
+-Hit the "Save" Button and "Connect"
 
-    ![Connection panel](imgs/robomongo-connect.png)
+![Connection panel](imgs/robomongo-connect.png)
