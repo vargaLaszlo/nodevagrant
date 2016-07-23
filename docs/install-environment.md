@@ -2,24 +2,27 @@
 
 ## Windows
 
-  - Enable VT-x in bios
+- Enable VT-x in bios
 
-  - Deactivate Hyper-V in Windows features
+- Deactivate Hyper-V in Windows features
 
-  - Install VirtualBox
-    https://www.virtualbox.org/wiki/Downloads
+- Install VirtualBox
+    
+https://www.virtualbox.org/wiki/Downloads
 
-  - Install Vagrant
-    https://www.vagrantup.com/downloads.html
-    After the install reboot host machine
+- Install Vagrant
+  
+https://www.vagrantup.com/downloads.html
+  
+After the install reboot host machine
 
-  - Install Git for windows
+- Install Git for windows
 
-    Set enviroment variable "Path" to ssh.exe (settings > system > about > system info > advenced system settings > enviroment variables > path > edit > new ~ "C:/Program Files/OpenSSH/bin")
+- Set enviroment variable "Path" to ssh.exe (settings > system > about > system info > advenced system settings > enviroment variables > path > edit > new ~ "C:/Program Files/OpenSSH/bin")
 
-  - Create shared folders on host machine (dev folder)
+- Create shared folders on host machine (dev folder)
 
-  - CD to vagrant box folder in command line (Git bash), and hit:
+- CD to vagrant box folder in command line (Git bash), and hit:
     ```
     vagrant up
     ```
