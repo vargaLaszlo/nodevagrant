@@ -12,17 +12,17 @@ https://chrome.google.com/webstore/detail/simple-docker-ui/jfaelnolkgonnjdlkfokj
 
 ## Connect to Nodevagrant
 
-    -Go to settings tab
+-Go to settings tab
 
-    -Set url in "Connection to Docker Remote API"
+-Set url in "Connection to Docker Remote API"
 
-        Use localhost
+Use localhost
 
         ```
         http://localhost:2375
         ```
 
-        or use the VM-s IP adress
+or use the VM-s IP adress
 
 
         ```
@@ -30,6 +30,6 @@ https://chrome.google.com/webstore/detail/simple-docker-ui/jfaelnolkgonnjdlkfokj
 
         ```
 
-    -Hit the "Verify!" Button
+-Hit the "Verify!" Button
 
-    ![Connection panel](imgs/simple_docker_ui.png)
+![Connection panel](imgs/simple_docker_ui.png)
