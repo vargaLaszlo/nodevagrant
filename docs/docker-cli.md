@@ -18,17 +18,11 @@ https://chrome.google.com/webstore/detail/simple-docker-ui/jfaelnolkgonnjdlkfokj
 
 Use localhost
 
-        ```
         http://localhost:2375
-        ```
 
 or use the VM-s IP adress
 
-
-        ```
         http://192.168.33.10:2375
-
-        ```
 
 -Hit the "Verify!" Button
 
