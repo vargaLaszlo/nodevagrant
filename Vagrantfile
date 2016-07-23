@@ -4,6 +4,7 @@
 node_install = "APT", # NVM | APT | NONE
 node_version_nvm = "4.4.4", # works with NVM
 node_version_apt = "4.x" # works with APT
+docker_remote_install = "DOCKER" # DOCKER | SOCKET | NONE
 
 # Install required vagrant plugins
 required_plugins = %w(vagrant-triggers vagrant-share vagrant-hostsupdater vagrant-cachier vagrant-multi-putty vagrant-vbguest)
@@ -24,6 +25,7 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.box_url = "http://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-vagrant.box"
   config.vm.box_check_update = true
+  config.vm.boot_timeout = 36000
 
   ENV['LC_ALL'] = "en_US.UTF-8"
 
@@ -55,7 +57,6 @@ Vagrant.configure(2) do |config|
   end
 
   # Set vagrant chache / Needs vagrant-cachier plugin
-
   if Vagrant.has_plugin?("vagrant-cachier")
     # More info on http://fgrehm.viewdocs.io/vagrant-cachier/usage
     config.cache.scope = :box
@@ -126,6 +127,7 @@ Vagrant.configure(2) do |config|
    sh.path = "sh/provision/docker.sh"
    sh.keep_color = true
    sh.env = {
+    "DOCKER_REMOTE_INSTALL" => docker_remote_install,
     "USER" => user,
     "HOME_FOLDER" => home
    }
@@ -139,7 +141,7 @@ Vagrant.configure(2) do |config|
     "HOME_FOLDER" => home
    }
   end
-  
+
   # SASS, Compass
   # config.vm.provision :shell, :path => "sh/provision/compass.sh"
 

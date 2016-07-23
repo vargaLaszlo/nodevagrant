@@ -43,20 +43,28 @@ sudo $PACKAGE_MANAGER -q -y install docker-compose
 
 # Docker Remote API
 
-if [ -f /etc/systemd/system/docker-tcp.socket ]; then
-  :
-else
-  sudo cp $HOME_FOLDER/sh/files/docker-tcp.socket /etc/systemd/system/docker-tcp.socket
-fi
+if [ $DOCKER_REMOTE_INSTALL == "DOCKER" ]; then
+  sudo docker pull -a --disable-content-trust=true jarkt/docker-remote-api
+  sudo docker run -d -p 2375:2375 -v /var/run/docker.sock:/var/run/docker.sock --name docker-remote-api jarkt/docker-remote-api
+  sudo docker start docker-remote-api
+elif [ $DOCKER_REMOTE_INSTALL == "SOCKET" ]; then
+  if [ -f /etc/systemd/system/docker-tcp.socket ]; then
+    :
+  else
+    sudo cp $HOME_FOLDER/sh/files/docker-tcp.socket /etc/systemd/system/docker-tcp.socket
+  fi
 
-sudo systemctl enable docker-tcp.socket
-sudo systemctl stop docker
-sudo systemctl start docker-tcp.socket
+  sudo systemctl enable docker-tcp.socket
+  sudo systemctl stop docker
+  sudo systemctl start docker-tcp.socket
 
-if grep -q 'docker-tcp.socket' $HOME_FOLDER/.profile; then
-  :
+  if grep -q 'docker-tcp.socket' $HOME_FOLDER/.profile; then
+    :
+  else
+    echo "sudo systemctl start docker-tcp.socket" >> $HOME_FOLDER/.profile
+  fi
 else
-  echo "sudo systemctl start docker-tcp.socket" >> $HOME_FOLDER/.profile
+  :
 fi
 
 #sudo service docker restart
