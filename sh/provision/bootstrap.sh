@@ -8,8 +8,6 @@ fi
 
 # Upgrade/install packages
 
-HOME_FOLDER=/home/ubuntu
-
 sudo $PACKAGE_MANAGER -q -y update
 sudo $PACKAGE_MANAGER -q -y upgrade
 sudo $PACKAGE_MANAGER -q -y autoremove

@@ -1,6 +1,7 @@
 ### Vagrant ###
 .vagrant/
 .gitconfig
+*-console.log
 
 dev/
 

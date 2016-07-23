@@ -43,9 +43,21 @@ sudo $PACKAGE_MANAGER -q -y install docker-compose
 
 # Docker Remote API
 
-sudo docker pull jarkt/docker-remote-api
-sudo docker run -p 2375:2375 -v /var/run/docker.sock:/var/run/docker.sock --name docker-remote-api jarkt/docker-remote-api
-sudo docker start docker-remote-api
+if [ -f /etc/systemd/system/docker-tcp.socket ]; then
+  :
+else
+  sudo cp $HOME_FOLDER/sh/files/docker-tcp.socket /etc/systemd/system/docker-tcp.socket
+fi
+
+sudo systemctl enable docker-tcp.socket
+sudo systemctl stop docker
+sudo systemctl start docker-tcp.socket
+
+if grep -q 'docker-tcp.socket' $HOME_FOLDER/.profile; then
+  :
+else
+  echo "sudo systemctl start docker-tcp.socket" >> $HOME_FOLDER/.profile
+fi
 
 #sudo service docker restart
 

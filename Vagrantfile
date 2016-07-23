@@ -78,7 +78,7 @@ Vagrant.configure(2) do |config|
 
   # Apt-fast
   config.vm.provision "shell" do |sh|
-   sh.path = "sh/provision-apt-fast.sh"
+   sh.path = "sh/provision/apt-fast.sh"
    sh.keep_color = true
    sh.env = {
     "HOME_FOLDER" => home
@@ -87,7 +87,7 @@ Vagrant.configure(2) do |config|
 
   # Bootstrap
   config.vm.provision "shell" do |sh|
-   sh.path = "sh/provision-bootstrap.sh"
+   sh.path = "sh/provision/bootstrap.sh"
    sh.keep_color = true
    sh.env = {
     "HOME_FOLDER" => home
@@ -96,7 +96,7 @@ Vagrant.configure(2) do |config|
 
   # Samba
   config.vm.provision "shell" do |sh|
-   sh.path = "sh/provision-samba.sh"
+   sh.path = "sh/provision/samba.sh"
    sh.keep_color = true
    sh.env = {
     "HOME_FOLDER" => home
@@ -105,7 +105,7 @@ Vagrant.configure(2) do |config|
 
   # Node.js
   config.vm.provision "shell" do |sh|
-   sh.path = "sh/provision-node.sh"
+   sh.path = "sh/provision/node.sh"
    sh.keep_color = true
    sh.env = {
     "NODE_INSTALL" => node_install,
@@ -117,31 +117,32 @@ Vagrant.configure(2) do |config|
 
   # Mongodb
   config.vm.provision "shell" do |sh|
-   sh.path = "sh/provision-mongo.sh"
+   sh.path = "sh/provision/mongo.sh"
    sh.keep_color = true
   end
 
   # Docker
   config.vm.provision "shell" do |sh|
-   sh.path = "sh/provision-docker.sh"
+   sh.path = "sh/provision/docker.sh"
    sh.keep_color = true
    sh.env = {
-    "USER" => user
+    "USER" => user,
+    "HOME_FOLDER" => home
    }
   end
 
   # Phantomjs
   config.vm.provision "shell" do |sh|
-   sh.path = "sh/provision-phantomjs.sh"
+   sh.path = "sh/provision/phantomjs.sh"
    sh.keep_color = true
    sh.env = {
     "HOME_FOLDER" => home
    }
   end
-
+  
   # SASS, Compass
-  # config.vm.provision :shell, :path => "sh/provision-compass.sh"
+  # config.vm.provision :shell, :path => "sh/provision/compass.sh"
 
   # Welcome message
-  config.vm.post_up_message = 'Welcome! See vagrant comand line help: "vagrant --help" To log into the virtual machine type "vagrant ssh" (if you need username/password:#{user}/#{user})'
+  config.vm.post_up_message = 'Welcome! See vagrant comand line help: "vagrant --help" To log into the virtual machine type "vagrant ssh". If you need username / password: #{user} / #{user}'
 end
