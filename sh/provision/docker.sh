@@ -11,9 +11,9 @@ fi
 sudo apt-get -q -y install apt-transport-https ca-certificates
 sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
-# On Ubuntu Precise 12.04 (LTS)
+# Ubuntu Precise 12.04 (LTS)
 # deb https://apt.dockerproject.org/repo ubuntu-precise main
-# On Ubuntu Trusty 14.04 (LTS)
+# Ubuntu Trusty 14.04 (LTS)
 # deb https://apt.dockerproject.org/repo ubuntu-trusty main
 # Ubuntu Wily 15.10
 # deb https://apt.dockerproject.org/repo ubuntu-wily main
