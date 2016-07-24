@@ -14,7 +14,7 @@ if ! [ $ARCH = "x86_64" ]; then
 	$ARCH="i686"
 fi
 
-PHANTOM_JS="$PHANTOM_VERSION-linux-$ARCH"
+PHANTOM_JS=$PHANTOMJS_VERSION-linux-$ARCH
 
 # sudo apt-get -y -q update
 sudo $PACKAGE_MANAGER -q -y --force-yes install build-essential chrpath libssl-dev libxft-dev

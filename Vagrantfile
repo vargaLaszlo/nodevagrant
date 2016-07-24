@@ -1,8 +1,8 @@
 # vi: set ft=ruby :
 
 # Settings
-node_install = "APT", # NVM | APT | NONE
-node_version_nvm = "4.4.4", # works with NVM
+node_install = "APT" # NVM | APT | NONE
+node_version_nvm = "4.4.4" # works with NVM
 node_version_apt = "4.x" # works with APT
 docker_remote_install = "DOCKER" # DOCKER | SOCKET | NONE
 phantomjs_version = "phantomjs-1.9.8"
@@ -32,7 +32,7 @@ Vagrant.configure(2) do |config|
 
   ubuntu = "xenial"
   user = "ubuntu"
-  home = "/home/ubuntu"
+  home = "/home/#{user}"
 
   # Shh connect errors/timeouts, use if ssh connect fails
   # config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
