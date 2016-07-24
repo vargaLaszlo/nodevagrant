@@ -8,7 +8,6 @@ fi
 
 # Install PhantomJS headless browser
 
-PHANTOM_VERSION="phantomjs-1.9.8"
 ARCH=$(uname -m)
 
 if ! [ $ARCH = "x86_64" ]; then

@@ -5,6 +5,7 @@ node_install = "APT", # NVM | APT | NONE
 node_version_nvm = "4.4.4", # works with NVM
 node_version_apt = "4.x" # works with APT
 docker_remote_install = "DOCKER" # DOCKER | SOCKET | NONE
+phantomjs_version = "phantomjs-1.9.8"
 
 # Install required vagrant plugins
 required_plugins = %w(vagrant-triggers vagrant-share vagrant-hostsupdater vagrant-cachier vagrant-multi-putty vagrant-vbguest)
@@ -138,6 +139,7 @@ Vagrant.configure(2) do |config|
    sh.path = "sh/provision/phantomjs.sh"
    sh.keep_color = true
    sh.env = {
+    "PHANTOMJS_VERSION" => phantomjs_version,
     "HOME_FOLDER" => home
    }
   end
@@ -146,5 +148,5 @@ Vagrant.configure(2) do |config|
   # config.vm.provision :shell, :path => "sh/provision/compass.sh"
 
   # Welcome message
-  config.vm.post_up_message = 'Welcome! See vagrant comand line help: "vagrant --help" To log into the virtual machine type "vagrant ssh". If you need username / password: #{user} / #{user}'
+  config.vm.post_up_message = "Welcome! See vagrant comand line help: \"vagrant --help\" To log into the virtual machine type \"vagrant ssh\". If you need username/password: #{user}/#{user}"
 end
