@@ -42,7 +42,9 @@ Vagrant.configure(2) do |config|
 
   # Shared folders
   # config.vm.synced_folder ".", #{home}
-  config.vm.synced_folder "dev", "#{home}/dev"
+  config.vm.synced_folder "dev", "#{home}/dev", create: true
+  # config.vm.synced_folder "smb", "#{home}/smb", create: true, type: "smb"
+  config.vm.synced_folder "db", "/data/db", create: true
   config.vm.synced_folder "sh", "#{home}/sh"
 
   # Virtualbox gui, memory, network cad

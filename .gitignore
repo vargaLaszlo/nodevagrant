@@ -3,7 +3,10 @@
 .gitconfig
 *-console.log
 
+### Shared folders ###
 dev/
+smb/
+db/
 
 ### Third Party Shellscripts ###
 sh/eZServerMonitor.sh
