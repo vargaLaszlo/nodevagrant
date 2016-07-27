@@ -70,6 +70,7 @@ Vagrant.configure(2) do |config|
   # config.vm.network "forwarded_port", guest: 8081, host: 8081
   config.vm.network "forwarded_port", guest: 27017, host: 27777 # Mongo
   config.vm.network "forwarded_port", guest: 2375, host: 2375 # Docker Remote Api
+  config.vm.network "forwarded_port", host: 9222, guest: 9222 # Chrome remote debugger port
 
   # config.vm.hostname = "dev.nodevagrant.com"
   config.vm.network "private_network", ip: "192.168.33.10"
