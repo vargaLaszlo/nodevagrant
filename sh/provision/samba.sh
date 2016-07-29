@@ -11,21 +11,8 @@ sudo $PACKAGE_MANAGER -q -y install samba
 if grep -q 'NodeVagrant' /etc/samba/smb.conf; then
   echo '>>> samba already configured'
 else
-  sudo echo 'security = share' >> /etc/samba/smb.conf
-  sudo echo '; guest account = nobody' >> /etc/samba/smb.conf
-  sudo echo '#' >> /etc/samba/smb.conf
-  sudo echo '##### NodeVagrant' >> /etc/samba/smb.conf
-  sudo echo '[devs]' >> /etc/samba/smb.conf
-  sudo echo '    comment = nodevagrant' >> /etc/samba/smb.conf
-  sudo echo "    path = ${HOME_FOLDER}/devs/" >> /etc/samba/smb.conf
-  sudo echo '    writable = yes' >> /etc/samba/smb.conf
-  sudo echo '    public = yes' >> /etc/samba/smb.conf
-  sudo echo '    browsable = yes' >> /etc/samba/smb.conf
-  sudo echo '    guest ok = yes' >> /etc/samba/smb.conf
-  sudo echo '    guest account = nobody' >> /etc/samba/smb.conf
-  sudo echo '    guest only = yes' >> /etc/samba/smb.conf
-  sudo echo '    read only = no' >> /etc/samba/smb.conf
-  sudo echo '    create mask = 0775' >> /etc/samba/smb.conf
+  sudo cat $HOME_FOLDER/sh/files/smb.conf >> /etc/samba/smb.conf
+  sudo sed -i "s|HOMEFOLDER|$HOME_FOLDER|g" /etc/samba/smb.conf
 fi
 
 sudo mkdir -p  $HOME_FOLDER/devs/
