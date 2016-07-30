@@ -1,0 +1,34 @@
+##### NodeVagrant #####
+# Gather git repository info
+function parse_git_dirty {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+}
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e "/^[^*]/d" -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
+}
+function parse_git_username {
+  git config user.name 2> /dev/null | tail -n1
+}
+# Colored promt
+export CLICOLOR=true
+export LSCOLORS=ExFxCxDxBxegedabagacad
+PS1="\[\033[0;31m\]> \[\033[0;32m\]\u@\h: \[\033[0;33m\]\w\[\033[0;36m\]$(__git_ps1)\[\033[00m\] \$ "
+#PS1="\u@\h \[\033[1;33m\]\w\[\033[0m\033[1;34m\][$(parse_git_username)]\[\033[0m\033[1;32m\]$(parse_git_branch)\[\033[0m\] \n$
+
+# Aliases
+alias cd5="cd ../../../../.."
+alias cd4="cd ../../../.."
+alias cd3="cd ../../.."
+alias cd2="cd ../.."
+alias cd1="cd .."
+
+alias gpull="git pull"
+alias gpush="git push"
+alias gca="git commit -am"
+alias gc="git commit -m"
+alias ga="git add"
+alias gs="git status"
+alias gd="git diff"
+
+alias npmi="npm install --no-bin-link"
+alias npm="npm --no-bin-link"

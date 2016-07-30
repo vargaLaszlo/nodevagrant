@@ -29,8 +29,12 @@ sudo chmod 777 -R $HOME_FOLDER/.nvm
 echo 'export NVM_DIR="$HOME_FOLDER/.nvm"' >> $HOME_FOLDER/.bashrc
 echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> $HOME_FOLDER/.bashrc
 
-echo "source $HOME_FOLDER/.nvm/nvm.sh" >> $HOME_FOLDER/.profile
-source $HOME_FOLDER/.profile
+if grep -q 'nvm.sh' $HOME_FOLDER/.profile; then
+  :
+else
+  echo "source $HOME_FOLDER/.nvm/nvm.sh" >> $HOME_FOLDER/.profile
+  source $HOME_FOLDER/.profile
+fi
 
 # Install Node.js, npm via nvm
 
@@ -45,6 +49,3 @@ if [ $NODE_INSTALL == "NVM" ]; then
   echo '>>> node version' && node --version
   echo '>>> npm version' && npm --version
 fi
-
-echo 'alias npmi="npm install --no-bin-link"' >> $HOME_FOLDER/.bashrc
-echo 'alias npm="npm --no-bin-link"' >> $HOME_FOLDER/.bashrc
