@@ -22,8 +22,10 @@ fi
 
 curl https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | sh
 
+sudo mkdir /.nvm
 sudo cp -arv /root/.nvm $HOME_FOLDER/.nvm
 sudo chmod 777 -R .nvm
+sudo chmod 777 -R /.nvm
 sudo chmod 777 -R $HOME_FOLDER/.nvm
 
 echo 'export NVM_DIR="$HOME_FOLDER/.nvm"' >> $HOME_FOLDER/.bashrc
