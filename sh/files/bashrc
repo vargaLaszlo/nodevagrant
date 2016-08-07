@@ -22,6 +22,9 @@ alias cd3="cd ../../.."
 alias cd2="cd ../.."
 alias cd1="cd .."
 
+alias dev="cd ~/dev && ls -lh"
+alias devs="cd ~/devs && ls -lh"
+
 alias gpull="git pull"
 alias gpush="git push"
 alias gca="git commit -am"
