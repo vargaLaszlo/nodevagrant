@@ -1,7 +1,10 @@
 ### Vagrant ###
 .vagrant/
-.gitconfig
 *-console.log
+
+### User settings ###
+.gitconfig
+settings
 
 ### Shared folders ###
 dev/

@@ -6,9 +6,11 @@ node_version_nvm = "4.4.4" # works with NVM
 node_version_apt = "4.x" # works with APT
 docker_remote_install = "DOCKER" # DOCKER | SOCKET | NONE
 phantomjs_version = "phantomjs-1.9.8"
+port_forward_1 = 8080
+port_forward_2 = 8081
+required_plugins = %w(vagrant-triggers vagrant-share vagrant-hostsupdater vagrant-cachier vagrant-multi-putty vagrant-vbguest)
 
 # Install required vagrant plugins
-required_plugins = %w(vagrant-triggers vagrant-share vagrant-hostsupdater vagrant-cachier vagrant-multi-putty vagrant-vbguest)
 
 plugins_to_install = required_plugins.select { |plugin| not Vagrant.has_plugin? plugin }
 if not plugins_to_install.empty?
@@ -33,6 +35,11 @@ Vagrant.configure(2) do |config|
   ubuntu = "xenial"
   user = "ubuntu"
   home = "/home/#{user}"
+
+  # Create a text file named "settings" in vagrant root, to overwrite the settings variables
+  if File.exists?(File.join('settings')) then
+    eval(IO.read(File.join('settings')), binding)
+  end
 
   # Shh connect errors/timeouts, use if ssh connect fails
   # config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
@@ -66,18 +73,20 @@ Vagrant.configure(2) do |config|
   end
 
   # Forvarded ports
-  config.vm.network "forwarded_port", guest: 8080, host: 8080
-  # config.vm.network "forwarded_port", guest: 8081, host: 8081
+  config.vm.network "forwarded_port", guest: port_forward_1, host: port_forward_1
+  config.vm.network "forwarded_port", guest: port_forward_2, host: port_forward_2
   config.vm.network "forwarded_port", guest: 27017, host: 27777 # Mongo
   config.vm.network "forwarded_port", guest: 2375, host: 2375 # Docker Remote Api
-  config.vm.network "forwarded_port", host: 9222, guest: 9222 # Chrome remote debugger port
+  config.vm.network "forwarded_port", guest: 9222, host: 9222 # Chrome remote debugger port
 
   # config.vm.hostname = "dev.nodevagrant.com"
   config.vm.network "private_network", ip: "192.168.33.10"
   # config.vm.network "public_network"
 
   # Copy your gitconfig file into the vm
-  # config.vm.provision "file", source: ".gitconfig", destination: ".gitconfig"
+  if File.exists?(File.join('.gitconfig')) then
+    config.vm.provision "file", source: ".gitconfig", destination: ".gitconfig"
+  end
 
   # Install tools via shellscripts
 
