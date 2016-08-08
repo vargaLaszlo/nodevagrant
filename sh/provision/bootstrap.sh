@@ -11,7 +11,7 @@ fi
 sudo $PACKAGE_MANAGER -q -y update
 sudo $PACKAGE_MANAGER -q -y upgrade
 sudo $PACKAGE_MANAGER -q -y autoremove
-sudo $PACKAGE_MANAGER -q -y --force-yes install git wget curl build-essential libssl-dev linux-image-extra-$(uname -r) apparmor ruby htop mc cowsay
+sudo $PACKAGE_MANAGER -q -y --force-yes install git wget curl dos2unix build-essential libssl-dev linux-image-extra-$(uname -r) apparmor ruby htop mc cowsay
 
 # Third party shellscripts
 
@@ -53,4 +53,5 @@ if grep -q 'NodeVagrant' $HOME_FOLDER/.bashrc; then
   echo '>>> bash already configured'
 else
   sudo cat $HOME_FOLDER/sh/files/bashrc >> $HOME_FOLDER/.bashrc
+  dos2unix .bashrc
 fi

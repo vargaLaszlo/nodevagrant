@@ -1,18 +1,51 @@
 ##### NodeVagrant #####
+
 # Gather git repository info
-function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+git_branch() {
+    git branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
-function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e "/^[^*]/d" -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
+
+git_status() {
+    local status="$(git status --porcelain 2>/dev/null)"
+    local output=''
+    [[ -n $(egrep '^[MADRC]' <<<"$status") ]] && output="$output+"
+    [[ -n $(egrep '^.[MD]' <<<"$status") ]] && output="$output!"
+    [[ -n $(egrep '^\?\?' <<<"$status") ]] && output="$output?"
+    [[ -n $(git stash list) ]] && output="${output}S"
+    [[ -n $(git log --branches --not --remotes) ]] && output="${output}P"
+    [[ -n $output ]] && output="|$output"
+    echo $output
 }
-function parse_git_username {
-  git config user.name 2> /dev/null | tail -n1
+
+git_color() {
+    local staged=$([[ $1 =~ \+ ]] && echo yes)
+    local dirty=$([[ $1 =~ [!\?] ]] && echo yes)
+    if [[ -n $staged ]] && [[ -n $dirty ]]; then
+        echo -e '\033[1;33m'
+    elif [[ -n $staged ]]; then
+        echo -e '\033[1;32m'
+    elif [[ -n $dirty ]]; then
+        echo -e '\033[1;31m'
+    else
+        echo -e '\033[1;37m'
+    fi
 }
+
+git_prompt() {
+    local branch=$(git_branch)
+    if [[ -n $branch ]]; then
+        local state=$(git_status)
+        local color=$(git_color $state)
+        echo -e "\x01$color\x02[$branch$state]\x01\033[00m\x02"
+    fi
+}
+
+PS1='$debian_chroot\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w$(git_prompt)\[\033[00m\]\$ '
+
 # Colored promt
-export CLICOLOR=true
-export LSCOLORS=ExFxCxDxBxegedabagacad
-PS1="\[\033[0;31m\]> \[\033[0;32m\]\u@\h: \[\033[0;33m\]\w\[\033[0;36m\]$(__git_ps1)\[\033[00m\] \$ "
+#export CLICOLOR=true
+#export LSCOLORS=ExFxCxDxBxegedabagacad
+#PS1="\[\033[0;31m\]> \[\033[0;32m\]\u@\h: \[\033[0;33m\]\w\[\033[0;36m\]$(__git_ps1)\[\033[00m\] \$ "
 #PS1="\u@\h \[\033[1;33m\]\w\[\033[0m\033[1;34m\][$(parse_git_username)]\[\033[0m\033[1;32m\]$(parse_git_branch)\[\033[0m\] \n$
 
 # Aliases
