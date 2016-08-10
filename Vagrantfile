@@ -24,7 +24,7 @@ end
 
 # Vagrant configure
 Vagrant.configure(2) do |config|
-  config.vm.host_name = "nodevagrant"
+  config.vm.hostname = "nodevagrant"
   config.vm.box = "ubuntu/xenial64"
   config.vm.box_url = "http://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-vagrant.box"
   config.vm.box_check_update = true
