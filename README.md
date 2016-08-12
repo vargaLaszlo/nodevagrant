@@ -19,29 +19,13 @@
 * Utility shellscripts
 * Command line tools (git, mc, htop, etc.)
 
+## Guides
 
-## Install nodevagrant
+* [Install environment](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/install-environment.md)
+* [Get and run Nodevagrant](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/install-nodevagrant.md)
+* [Custom settings howto](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/custom-settings.md)
+* Connect with
+ * [Putty](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/putty.md)
+ * [Robomongo](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/robomongo.md)
+ * [Docker cli](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/docker-cli.md)
 
-### Install new nodevagrant box
-
-    git clone https://github.com/vargaLaszlo/nodevagrant.git
-    
-    cd nodevagrant
-    
-    vagrant up
-
-### Updating existing nodevagrant box
-
-    git pull origin master
-    
-    vagrant up
-    
-    vagrant provision
-
-### Reset, and updataing box
-
-    git pull origin master
-    
-    vagrant destroy
-    
-    vagrant up
