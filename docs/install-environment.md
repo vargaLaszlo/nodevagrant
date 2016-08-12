@@ -20,7 +20,7 @@
 
 - CD to vagrant box folder in command line (Git bash), and hit:
 
-  vagrant up
+      vagrant up
 
 ### Troubleshooting on Windows
 
@@ -42,4 +42,4 @@ Delete the private key ".vagrant.d/insecure_private_key"
 
   - CD to vagrant box folder in command line, and hit:
 
-    vagrant up
+      vagrant up

@@ -89,6 +89,15 @@ Vagrant.configure(2) do |config|
     config.vm.provision "file", source: ".gitconfig", destination: ".gitconfig"
   end
 
+  # Vagrant putty
+  if Vagrant.has_plugin?("vagrant-multi-putty") then
+    config.putty.modal = true
+    config.putty.after_modal do
+      require 'win32/activate'
+      Win32::Activate.active
+    end
+  end
+
   # Install tools via shellscripts
   provision_shellscripts.each do |i|
     config.vm.provision "shell" do |sh|
