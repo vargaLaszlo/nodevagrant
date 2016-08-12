@@ -19,6 +19,10 @@ Insert additional items to list like settings:
 If the forvarded port on the host and on the guest is not the same:
 
     forvarded_ports << [9999, 8888] # [guest, host]
+    
+To get te modifications run provision in command line:
+
+    vagrant provision
 
 Check the settings variables at the beginning of the Vagrantfile
 
