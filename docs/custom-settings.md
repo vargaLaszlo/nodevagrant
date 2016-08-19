@@ -1,5 +1,7 @@
 # Custom settings
 
+## Custom settings
+
 Use this to overwrite the default settings or insert your own Vagrant config lines.
 
 If a custom settings file named "settings" exists in the same directory as the Vagrantfile, it will be evaluated as ruby inline as it loads.
@@ -27,3 +29,11 @@ To get te modifications run provision in command line:
 Check the settings variables at the beginning of the Vagrantfile
 
 Note that if you find yourself using a Customfile for anything crazy or specifying different provisioning, then you may want to consider a new Vagrantfile entirely.
+
+## Custom gitconfig
+
+Copy your .gitconfig file in the same directory as the Vagrantfile, vagrant will copy it in the box home folder.
+
+## Custom shellscript
+
+Place your own shelscript named "user.sh" in "sh/provision" folder to run it in provision process

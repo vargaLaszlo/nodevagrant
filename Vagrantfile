@@ -8,7 +8,9 @@ docker_remote_install = "DOCKER" # DOCKER | SOCKET | NONE
 phantomjs_version = "phantomjs-1.9.8"
 forvarded_ports = [8080, 8081, [27017, 27777], 2375, 9222] # 24017: mongodb; 2375: docker remote api; 9222: chrome remote debugger port
 required_plugins = ["vagrant-triggers", "vagrant-share", "vagrant-hostsupdater", "vagrant-cachier", "vagrant-multi-putty", "vagrant-vbguest"]
-provision_shellscripts = ["apt-fast.sh", "bootstrap.sh", "samba.sh", "node.sh", "docker.sh", "mongo.sh", "phantomjs.sh"] # compass.sh ohmyzsh.sh
+provision_shellscripts = ["apt-fast.sh", "bootstrap.sh", "samba.sh", "node.sh", "docker.sh", "mongo.sh", "phantomjs.sh"] # compass.sh ohmyzsh.sh webmin.sh
+box_hostname = "nodevagrant"
+box_ip = "192.168.33.10"
 
 # Install required vagrant plugins
 plugins_to_install = required_plugins.select { |plugin| not Vagrant.has_plugin? plugin }
@@ -35,21 +37,23 @@ Vagrant.configure(2) do |config|
   user = "ubuntu"
   home = "/home/#{user}"
 
-  # Create a text file named "settings" in vagrant root, to overwrite the settings variables
+  # Custom settings file
   if File.exists?(File.join('settings')) then
     eval(IO.read(File.join('settings')), binding)
   end
 
-  # Shh connect errors/timeouts, use if ssh connect fails
-  # config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-  # config.ssh.username = user
-  # config.ssh.password = user
-  # config.ssh.insert_key = false
+  # Custom shellscript
+  if File.exists?(File.join('sh/provision/user.sh')) then
+    provision_shellscripts << "user.sh"
+  end
+
+  # Custom gitconfig
+  if File.exists?(File.join('.gitconfig')) then
+    config.vm.provision "file", source: ".gitconfig", destination: ".gitconfig"
+  end
 
   # Shared folders
-  # config.vm.synced_folder ".", #{home}
   config.vm.synced_folder "dev", "#{home}/dev", create: true
-  # config.vm.synced_folder "smb", "#{home}/smb", create: true, type: "smb"
   config.vm.synced_folder "db", "/data/db", create: true
   config.vm.synced_folder "sh", "#{home}/sh"
 
@@ -58,14 +62,9 @@ Vagrant.configure(2) do |config|
     v.gui = false
     v.memory = "2048"
     v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/dev", "1"]
-    # Change network card to PCnet-FAST III
-    # For NAT adapter
-    # v.customize ["modifyvm", :id, "--nictype1", "Am79C973"]
-    # For host-only adapter
-    # v.customize ["modifyvm", :id, "--nictype2", "Am79C973"]
   end
 
-  # Set vagrant chache / Needs vagrant-cachier plugin
+  # Set vagrant chache
   if Vagrant.has_plugin?("vagrant-cachier")
     # More info on http://fgrehm.viewdocs.io/vagrant-cachier/usage
     config.cache.scope = :box
@@ -80,14 +79,8 @@ Vagrant.configure(2) do |config|
     end
   end
 
-  # config.vm.hostname = "dev.nodevagrant.com"
-  config.vm.network "private_network", ip: "192.168.33.10"
-  # config.vm.network "public_network"
-
-  # Copy your gitconfig file into the vm
-  if File.exists?(File.join('.gitconfig')) then
-    config.vm.provision "file", source: ".gitconfig", destination: ".gitconfig"
-  end
+  config.vm.hostname = box_hostname
+  config.vm.network "private_network", ip: box_ip
 
   # Vagrant putty
   if Vagrant.has_plugin?("vagrant-multi-putty") then

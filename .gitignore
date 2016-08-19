@@ -3,8 +3,9 @@
 *-console.log
 
 ### User settings ###
-.gitconfig
-settings
+./.gitconfig
+./settings
+sh/provision/user.sh
 
 ### Shared folders ###
 dev/

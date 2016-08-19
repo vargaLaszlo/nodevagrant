@@ -1,0 +1,64 @@
+# Custom settings example
+# Make a copy from this file to overwrite the Vagrantfile settings
+
+## Node settings
+
+# node_install = "APT"  # NVM | APT | NONE
+# node_version_nvm = "4.4.4" # works with NVM 
+# node_version_apt = "4.x" # works with APT
+
+## Docker settings
+
+# docker_remote_install = "DOCKER" # DOCKER | SOCKET | NONE
+
+## Phantomjs settings
+
+# phantomjs_version = "phantomjs-1.9.8"
+
+## Forwarded ports
+
+# forvarded_ports = [8080, 8081, [27017, 27777], 2375, 9222] # 24017: mongodb; 2375: docker remote api; 9222: chrome remote debugger port
+# Add port to original forwarded ports
+# forwarded_ports << 111111 
+# If the forvarded port on the host and on the guest is not the same:
+# forvarded_ports << [9999, 8888] # [guest, host]
+
+## Required plugins
+
+# required_plugins = ["vagrant-triggers", "vagrant-share", "vagrant-hostsupdater", "vagrant-cachier", "vagrant-multi-putty", "vagrant-vbguest"]
+# Add plugin to original required_plugins
+# required_plugins << "vagrant-cucumber"
+
+## Provision shellscripts
+
+# provision_shellscripts = ["apt-fast.sh", "bootstrap.sh", "samba.sh", "node.sh", "docker.sh", "mongo.sh", "phantomjs.sh"]
+# Add individual shellscript to original provision_shellscripts
+# provision_shellscripts << "compass.sh"
+# provision_shellscripts << "ohmyzsh.sh"
+# provision_shellscripts << "webmin.sh"
+
+## Network settings
+
+# box_hostname = "nodevagrant"
+# box_ip = "192.168.33.10"
+
+# Vagrant config examples
+
+## SMB synced folder for windows users
+
+# https://www.vagrantup.com/docs/synced-folders/smb.html
+# config.vm.synced_folder "smb", "#{home}/smb", create: true, type: "smb"
+
+## Public network
+
+# https://www.vagrantup.com/docs/networking/public_network.html
+# config.vm.network "public_network"
+# config.vm.network "public_network", use_dhcp_assigned_default_route: true # Using the DHCP Assigned Default Route
+# config.vm.network "public_network", ip: "192.168.0.17" # Static IP
+
+## SSH login via password
+
+# https://www.vagrantup.com/docs/vagrantfile/ssh_settings.html
+# config.ssh.username = user
+# config.ssh.password = user
+# config.ssh.insert_key = false
