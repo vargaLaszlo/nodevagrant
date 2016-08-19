@@ -4,20 +4,21 @@
 
 ## Features
 
+* Based on Ubuntu 16.04 LTS
 * Apt-fast - much faster apt-get installs
 * Samba - folder share via network
-  * devs folder for windows users
 * Virtualbox shared folder
-  * dev folder for unix users
-* Node
-  * NVM
+* Node.js
+* NVM
 * Mongo
 * Docker
-  * Docker-compose
-  * Docker Remote API
+* Docker-compose
+* Docker Remote API
 * PhantomJS
 * Utility shellscripts
 * Command line tools (git, mc, htop, etc.)
+* Custom settings
+* Optional tools (oh-my-zsh, webmin, sass+compass)
 
 ## Guides
 
