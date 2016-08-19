@@ -103,7 +103,8 @@ Vagrant.configure(2) do |config|
        "DOCKER_REMOTE_INSTALL" => docker_remote_install,
        "PHANTOMJS_VERSION" => phantomjs_version,
        "USER" => user,
-       "HOME_FOLDER" => home
+       "HOME_FOLDER" => home,
+       "HOSTNAME" => box_hostname
      }
     end
   end
