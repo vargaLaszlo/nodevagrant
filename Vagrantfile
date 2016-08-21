@@ -47,9 +47,12 @@ Vagrant.configure(2) do |config|
     provision_shellscripts << "user.sh"
   end
 
-  # Custom gitconfig
-  if File.exists?(File.join('.gitconfig')) then
-    config.vm.provision "file", source: ".gitconfig", destination: ".gitconfig"
+  # Custom config files
+  custom_files = [".gitconfig", ".bashrc", ".zshrc"]
+  custom_files.each do |c|
+    if File.exists?(File.join('c')) then
+      config.vm.provision "file", source: c, destination: c
+    end
   end
 
   # Shared folders
