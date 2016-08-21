@@ -13,7 +13,7 @@ OHMYZSH_THEME=nodevagrant
 
 sudo $PACKAGE_MANAGER -q -y install zsh
 
-# Install oh-my-zsh
+# Download oh-my-zsh
 
 if [ -d $HOME_FOLDER/.oh-my-zsh ]; then
   :
@@ -21,17 +21,24 @@ else
   git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME_FOLDER/.oh-my-zsh
 fi
 
-cp $HOME_FOLDER/.oh-my-zsh/templates/zshrc.zsh-template $HOME_FOLDER/.zshrc
+# Create & modify settings
 
-# Modify settings
+if [ -f $HOME_FOLDER/.zshrc ]; then
+  :
+else
+  cp $HOME_FOLDER/.oh-my-zsh/templates/zshrc.zsh-template $HOME_FOLDER/.zshrc
+  sed -i "s|plugins=(git)|plugins=($OHMYZSH_PLUGINS)|g" $HOME_FOLDER/.zshrc
+  sed -i "s|ZSH_THEME=\"robbyrussell\"|ZSH_THEME=$OHMYZSH_THEME|g" $HOME_FOLDER/.zshrc
+fi
+
+# Install nodevagrant theme
 
 if [ -f $HOME_FOLDER/.oh-my-zsh/custom/nodevagrant.zsh-theme ]; then
   :
 else
   cp $HOME_FOLDER/sh/files/nodevagrant.zsh-theme $HOME_FOLDER/.oh-my-zsh/custom/nodevagrant.zsh-theme
-
-  sed -i "s|plugins=(git)|plugins=($OHMYZSH_PLUGINS)|g" $HOME_FOLDER/.zshrc
-  sed -i "s|ZSH_THEME=\"robbyrussell\"|ZSH_THEME=$OHMYZSH_THEME|g" $HOME_FOLDER/.zshrc
 fi
+
+# Set zsh as default command
 
 chsh -s /bin/zsh $USER
