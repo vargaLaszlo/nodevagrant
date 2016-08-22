@@ -1,4 +1,4 @@
-# Install nodevagrant
+# Install and run nodevagrant
 
 ## Install new nodevagrant box
 
