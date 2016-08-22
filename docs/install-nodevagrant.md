@@ -6,7 +6,11 @@
     
     cd nodevagrant
     
+## Start box, and login
+    
     vagrant up
+    
+    vagrant ssh
     
 ## Suspending/halting the machine
 
