@@ -7,6 +7,12 @@
     cd nodevagrant
     
     vagrant up
+    
+## Suspending/halting the machine
+
+    vagrant suspend
+    
+    vargant halt
 
 ## Updating existing nodevagrant box
 
