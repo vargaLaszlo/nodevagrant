@@ -32,7 +32,7 @@ Note that if you find yourself using a Customfile for anything crazy or specifyi
 
 ## Custom gitconfig
 
-Copy your .gitconfig .bashrc .zshrc files in the same directory as the Vagrantfile, vagrant will copy it in the box home folder during the provision process".
+Copy your .gitconfig .bashrc .zshrc files in the same directory as the Vagrantfile, vagrant will copy it in the box home folder during the provision process.
 
 ## Custom shellscript
 
