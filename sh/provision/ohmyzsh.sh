@@ -37,7 +37,15 @@ if [ -f $HOME_FOLDER/.oh-my-zsh/custom/nodevagrant.zsh-theme ]; then
   :
 else
   cp $HOME_FOLDER/sh/files/nodevagrant.zsh-theme $HOME_FOLDER/.oh-my-zsh/custom/nodevagrant.zsh-theme
+  sudo dos2unix $HOME_FOLDER/.oh-my-zsh/custom/nodevagrant.zsh-theme
 fi
+
+# Fix premissions
+
+sudo chmod 777 $HOME_FOLDER/.zshrc
+sudo chown $USER:$USER $HOME_FOLDER/.zshrc
+sudo chmod -R 777 $HOME_FOLDER/.oh-my-zsh
+sudo chown -R $USER:$USER $HOME_FOLDER/.oh-my-zsh/
 
 # Set zsh as default command
 

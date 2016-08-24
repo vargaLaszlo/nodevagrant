@@ -53,5 +53,5 @@ if grep -q 'NodeVagrant' $HOME_FOLDER/.bashrc; then
   echo '>>> bash already configured'
 else
   sudo cat $HOME_FOLDER/sh/files/bashrc >> $HOME_FOLDER/.bashrc
-  dos2unix .bashrc
+  dos2unix $HOME_FOLDER/.bashrc
 fi
