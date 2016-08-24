@@ -11,7 +11,7 @@ fi
 sudo $PACKAGE_MANAGER -q -y update
 sudo $PACKAGE_MANAGER -q -y upgrade
 sudo $PACKAGE_MANAGER -q -y autoremove
-sudo $PACKAGE_MANAGER -q -y --force-yes install git wget curl dos2unix zfs build-essential libssl-dev linux-image-extra-$(uname -r) apparmor ruby ruby-dev htop mc cowsay
+sudo $PACKAGE_MANAGER -q -y --force-yes install git wget curl vim dos2unix zfs nfs-common build-essential libssl-dev linux-image-extra-$(uname -r) apparmor ruby ruby-dev htop mc cowsay
 
 # Third party shellscripts
 
