@@ -11,6 +11,7 @@ required_plugins = ["vagrant-triggers", "vagrant-share", "vagrant-hostsupdater",
 provision_shellscripts = ["apt-fast.sh", "bootstrap.sh", "samba.sh", "node.sh", "docker.sh", "mongo.sh", "phantomjs.sh"] # compass.sh ohmyzsh.sh webmin.sh
 box_hostname = "nodevagrant"
 box_ip = "192.168.33.10"
+cmd = "BASH+GIT" # BASH | BASH+GIT | OHMYZSH
 
 # Install required vagrant plugins
 plugins_to_install = required_plugins.select { |plugin| not Vagrant.has_plugin? plugin }
@@ -107,7 +108,8 @@ Vagrant.configure(2) do |config|
        "PHANTOMJS_VERSION" => phantomjs_version,
        "USER" => user,
        "HOME_FOLDER" => home,
-       "HOSTNAME" => box_hostname
+       "HOSTNAME" => box_hostname,
+       "CMD" => cmd
      }
     end
   end

@@ -33,9 +33,8 @@ local current_time='%{$fg[grey]%}%*%{$reset_color%}'
 local ret_status="%(?:%{$fg_bold[white]%}%B$%b:%{$fg_bold[red]%}%B$%b%s)"
 
 # Promt
-PROMPT="╭─ ${user_host} ${current_time}
-┼─ ${current_dir} ${git_branch}
-╰─ ${ret_status} "
+PROMPT="○ ${user_host} ${current_dir} ${git_branch}
+● ${ret_status} "
 
 # Aside promt
 RPS1="${return_code}"
