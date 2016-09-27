@@ -6,7 +6,7 @@ node_version_nvm = "4.4.4" # works with NVM
 node_version_apt = "4.x" # works with APT
 docker_remote_install = "DOCKER" # DOCKER | SOCKET | NONE
 phantomjs_version = "phantomjs-1.9.8"
-forvarded_ports = [8080, 8081, [27017, 27777], 2375, 9222] # 24017: mongodb; 2375: docker remote api; 9222: chrome remote debugger port
+forwarded_ports = [8080, 8081, [27017, 27777], 2375, 9222] # 24017: mongodb; 2375: docker remote api; 9222: chrome remote debugger port
 required_plugins = ["vagrant-triggers", "vagrant-share", "vagrant-hostsupdater", "vagrant-cachier", "vagrant-multi-putty", "vagrant-vbguest"]
 provision_shellscripts = ["apt-fast.sh", "bootstrap.sh", "samba.sh", "node.sh", "docker.sh", "mongo.sh", "phantomjs.sh"] # compass.sh ohmyzsh.sh webmin.sh
 box_hostname = "nodevagrant"
@@ -74,8 +74,8 @@ Vagrant.configure(2) do |config|
     config.cache.scope = :box
   end
 
-  # Forvarded ports
-  forvarded_ports.each do |p|
+  # Forwarded ports
+  forwarded_ports.each do |p|
     if p.kind_of?(Array) then
       config.vm.network "forwarded_port", guest: p[0], host: p[1]
     else
