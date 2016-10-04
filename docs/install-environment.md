@@ -14,8 +14,6 @@
 
 - Reboot host machine
 
-- Set enviroment variable "Path" to ssh.exe (settings > system > about > system info > advenced system settings > enviroment variables > path > edit > new ~ "C:/Program Files/OpenSSH/bin")
-
 - CD to vagrant box folder in command line (Git bash), and hit:
 
       vagrant up
