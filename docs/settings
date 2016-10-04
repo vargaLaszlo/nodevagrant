@@ -17,11 +17,11 @@
 
 ## Forwarded ports
 
-# forvarded_ports = [8080, 8081, [27017, 27777], 2375, 9222] # 24017: mongodb; 2375: docker remote api; 9222: chrome remote debugger port
+# forwarded_ports = [8080, 8081, [27017, 27777], 2375, 9222] # 24017: mongodb; 2375: docker remote api; 9222: chrome remote debugger port
 # Add port to original forwarded ports
 # forwarded_ports << 111111 
-# If the forvarded port on the host and on the guest is not the same:
-# forvarded_ports << [9999, 8888] # [guest, host]
+# If the forwarded port on the host and on the guest is not the same:
+# forwarded_ports << [9999, 8888] # [guest, host]
 
 ## Required plugins
 
