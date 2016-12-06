@@ -5,7 +5,7 @@
 ## Features
 
 * Based on Ubuntu 16.04 LTS
-* Apt-fast - much faster apt-get installs
+* [Apt-fast](https://github.com/ilikenwf/apt-fast) - much faster apt-get installs
 * Samba - folder share via network
 * Virtualbox shared folder
 * Node.js
@@ -18,7 +18,7 @@
 * Utility shellscripts
 * Command line tools (git, mc, htop, etc.)
 * Custom settings
-* Optional tools (oh-my-zsh, webmin, sass+compass)
+* Optional tools ([oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh), webmin, sass+compass)
 
 ## Guides
 
