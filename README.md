@@ -30,3 +30,7 @@
  * [Robomongo](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/robomongo.md)
  * [Docker cli](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/docker-cli.md)
 
+## Support
+
+* [Something broken? Create a github issue](https://github.com/vargaLaszlo/nodevagrant/issues)
+* [Gitter conversation](https://gitter.im/nodevagrant/Lobby)
