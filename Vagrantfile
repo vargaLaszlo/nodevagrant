@@ -8,10 +8,12 @@ docker_remote_install = "DOCKER" # DOCKER | SOCKET | NONE
 phantomjs_version = "phantomjs-1.9.8"
 forwarded_ports = [8080, 8081, [27017, 27777], 2375, 9222] # 24017: mongodb; 2375: docker remote api; 9222: chrome remote debugger port
 required_plugins = ["vagrant-triggers", "vagrant-share", "vagrant-hostsupdater", "vagrant-cachier", "vagrant-multi-putty", "vagrant-vbguest"]
-provision_shellscripts = ["apt-fast.sh", "bootstrap.sh", "samba.sh", "node.sh", "docker.sh", "mongo.sh", "phantomjs.sh"] # compass.sh ohmyzsh.sh webmin.sh
+provision_shellscripts = ["apt-fast.sh", "bootstrap.sh", "node.sh", "docker.sh", "mongo.sh"] # samba.sh compass.sh ohmyzsh.sh webmin.sh phantomjs.sh
 box_hostname = "nodevagrant"
 box_ip = "192.168.33.10"
-cmd = "BASH+GIT" # BASH | BASH+GIT | OHMYZSH
+cmd = "BASH" # BASH | OHMYZSH
+git = false
+ohmyzsh_theme = "nodevagrant"
 
 # Install required vagrant plugins
 plugins_to_install = required_plugins.select { |plugin| not Vagrant.has_plugin? plugin }
