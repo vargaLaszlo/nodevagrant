@@ -6,40 +6,20 @@ else
     PACKAGE_MANAGER=apt-get
 fi
 
-# Install Docker
-
-sudo apt-get -q -y install apt-transport-https ca-certificates
-sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-
-# Ubuntu Precise 12.04 (LTS)
-# deb https://apt.dockerproject.org/repo ubuntu-precise main
-# Ubuntu Trusty 14.04 (LTS)
-# deb https://apt.dockerproject.org/repo ubuntu-trusty main
-# Ubuntu Wily 15.10
-# deb https://apt.dockerproject.org/repo ubuntu-wily main
-# Ubuntu Xenial 16.04 (LTS)
-# deb https://apt.dockerproject.org/repo ubuntu-xenial main
-
-sudo echo deb https://apt.dockerproject.org/repo ubuntu-xenial main > /etc/apt/sources.list.d/docker.list
-
-sudo $PACKAGE_MANAGER -q -y update
-sudo apt-get -q -y purge lxc-docker -y
-sudo apt-cache policy docker-engine
-
-sudo $PACKAGE_MANAGER -q -y update
-sudo $PACKAGE_MANAGER -q -y install docker-engine
-sudo usermod -aG docker $USER
-
-sudo service docker start
+wget -qO- https://get.docker.com/ | sh
 
 # Install docker-compose
+COMPOSE_VERSION=`git ls-remote https://github.com/docker/compose | grep refs/tags | grep -oP "[0-9]+\.[0-9][0-9]+\.[0-9]+$" | tail -n 1`
+sudo sh -c "curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose"
+sudo chmod +x /usr/local/bin/docker-compose
+sudo sh -c "curl -L https://raw.githubusercontent.com/docker/compose/${COMPOSE_VERSION}/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose"
 
-# 15.10 +
-sudo $PACKAGE_MANAGER -q -y install docker-compose
-
-# older ubuntu
-# sudo curl -L https://github.com/docker/compose/releases/download/1.7.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-# sudo chmod +x /usr/local/bin/docker-compose
+# Install docker-cleanup command
+cd /tmp
+git clone https://gist.github.com/76b450a0c986e576e98b.git
+cd 76b450a0c986e576e98b
+sudo mv docker-cleanup /usr/local/bin/docker-cleanup
+sudo chmod +x /usr/local/bin/docker-cleanup
 
 # Docker Remote API
 
