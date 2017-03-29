@@ -78,9 +78,9 @@ Vagrant.configure(2) do |config|
   # Forwarded ports
   forwarded_ports.each do |p|
     if p.kind_of?(Array) then
-      config.vm.network "forwarded_port", guest: p[0], host: p[1]
+      config.vm.network "forwarded_port", guest: p[0], host: p[1], host_ip: "127.0.0.1"
     else
-      config.vm.network "forwarded_port", guest: p, host: p
+      config.vm.network "forwarded_port", guest: p, host: p, host_ip: "127.0.0.1"
     end
   end
 
