@@ -115,7 +115,9 @@ Vagrant.configure(2) do |config|
        "USER" => user,
        "HOME_FOLDER" => home,
        "HOSTNAME" => box_hostname,
-       "CMD" => cmd
+       "CMD" => cmd,
+       "GIT" => git,
+       "THEME" => ohmyzsh_theme
      }
     end
   end
