@@ -73,6 +73,11 @@ Vagrant.configure(2) do |config|
   if Vagrant.has_plugin?("vagrant-cachier")
     # More info on http://fgrehm.viewdocs.io/vagrant-cachier/usage
     config.cache.scope = :box
+    config.cache.auto_detect = false
+    config.cache.enable :apt
+    config.cache.enable :apt_lists
+    config.cache.enable :gem
+    config.cache.enable :npm
   end
 
   # Forwarded ports
