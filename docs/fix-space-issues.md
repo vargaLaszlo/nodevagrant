@@ -1,19 +1,19 @@
-# :package: Fix Box space issues
+## :package: Fix Box space issues
 
-Start, and log into nodevagrant
+### Start, and log into nodevagrant
 
 ```
     vagrant up
     vagrant ssh
 ```
 
-## Get volume information
+### Get volume information
 
 ```
     df -h
 ```
 
-## Remove old kernels
+### Remove old kernels
 
 ```
   # List installed kernels
@@ -29,13 +29,13 @@ Start, and log into nodevagrant
   sudo apt-get purge linux-image-x.x.x-x-generic 
 ```
 
-## Clean apt-get
+### Clean apt-get
 
 ```
   sudo apt-get clean && sudo apt-get autoclean && sudo apt-get autoremove
 ```
 
-## Clone box and increase max size
+### Clone box and increase max size
 
 ```
   # Clone to resizable format (vdi)
