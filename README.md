@@ -25,10 +25,10 @@
 * [Install environment](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/install-environment.md)
 * [Get and run Nodevagrant](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/install-nodevagrant.md)
 * [Custom settings howto](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/custom-settings.md)
-* Connect with
- * [Putty](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/putty.md)
- * [Robomongo](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/robomongo.md)
- * [Docker cli](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/docker-cli.md)
+* Connect with [Putty](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/putty.md)
+* [Robomongo](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/robomongo.md)
+* [Docker cli](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/docker-cli.md)
+* [Fix "No space on device" issue](https://github.com/vargaLaszlo/nodevagrant/blob/master/docs/fix-space-issues.md)
 
 ## Support
 
