@@ -1,5 +1,12 @@
 # :package: Fix Box space issues
 
+Start, and log into nodevagrant
+
+```
+    vagrant up
+    vagrant ssh
+```
+
 ## Get volume information
 
 ```
