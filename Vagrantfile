@@ -14,6 +14,8 @@ box_ip = "192.168.33.10"
 cmd = "BASH" # BASH | OHMYZSH
 git = false
 ohmyzsh_theme = "nodevagrant"
+ram = "2048"
+gui = false
 
 # Install required vagrant plugins
 plugins_to_install = required_plugins.select { |plugin| not Vagrant.has_plugin? plugin }
@@ -64,8 +66,8 @@ Vagrant.configure(2) do |config|
 
   # Virtualbox gui, memory, network cad
   config.vm.provider "virtualbox" do |v|
-    v.gui = false
-    v.memory = "2048"
+    v.gui = gui
+    v.memory = ram
     v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/dev", "1"]
   end
 
